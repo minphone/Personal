@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion Config.android.compileSdkVersion
@@ -21,12 +22,81 @@ android {
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  implementation project(':domain')
+
+  implementation Config.libs.androidKTX
+
   implementation Config.libs.kotlin
   implementation Config.libs.appCompact
+  implementation Config.libs.recyclerview
+  implementation Config.libs.cardview
+  implementation Config.libs.design
   implementation Config.libs.constraintLayout
+  implementation Config.libs.javaxInject
+  implementation Config.libs.rxKotlin
+  implementation Config.libs.rxAndroid
+  implementation Config.libs.androidAnnotation
+  implementation Config.libs.timber
 
+  implementation Config.libs.archRuntime
+  implementation Config.libs.archLiveDataCore
+  implementation Config.libs.archCommon
+  implementation Config.libs.archCoreRuntime
+  implementation Config.libs.archLiveCycle
+  implementation Config.libs.archExtensions
+  implementation Config.libs.archLiveCycle
+
+  implementation Config.libs.glideRuntime
+  kapt Config.libs.glideComplier
+
+  implementation Config.libs.dagger
+  implementation Config.libs.daggerSupport
+  kapt Config.libs.daggerComplier
+  kapt Config.libs.daggerProcessor
+
+  implementation Config.libs.stetho
+
+  implementation(Config.libs.rabbit) {
+    exclude group: 'org.json', module: 'json'
+  }
+
+  testImplementation Config.testLibs.mockito
+  testImplementation Config.testLibs.mockitoInline
   testImplementation Config.testLibs.jUnit
-  androidTestImplementation Config.testLibs.jUnitRunner
-  androidTestImplementation Config.testLibs.espressoCore
+
+  androidTestImplementation Config.testLibs.jUnit
+  androidTestCompile Config.testLibs.espressoIntents
+  androidTestImplementation(Config.testLibs.espressoCore) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(Config.testLibs.jUnitRunner) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(Config.testLibs.jUnitRules) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+  androidTestImplementation(Config.testLibs.espressoIntents) {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+
+  androidTestImplementation Config.testLibs.rxIdler
+  androidTestImplementation Config.testLibs.archTesting
+  androidTestImplementation Config.testLibs.mockitoAndroid
+  androidTestImplementation Config.testLibs.mockitoKotlin
+
+  androidTestImplementation(Config.testLibs.espressoContrib) {
+    exclude module: 'appcompat'
+    exclude module: 'appcompat-v7'
+    exclude module: 'support-v4'
+    exclude module: 'support-v13'
+    exclude module: 'support-annotations'
+    exclude module: 'recyclerview-v7'
+    exclude module: 'design'
+  }
+
+  kaptTest Config.libs.daggerComplier
+  kaptAndroidTest Config.libs.daggerComplier
 }
+
+apply plugin: 'kotlin-android-extensions'
