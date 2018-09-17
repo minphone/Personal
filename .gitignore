@@ -13,3 +13,4 @@ buildSrc/build/*
 data/build/*
 domain/build/*
 remote/build/*
+cache/build/*

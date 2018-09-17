@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion Config.android.compileSdkVersion
+  defaultConfig {
+    minSdkVersion Config.android.minSdkVersion
+    targetSdkVersion Config.android.targetSdkVersion
+    versionCode Config.android.versionCode
+    versionName Config.android.versionName
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+}
+
+dependencies {
+  implementation project(':data')
+
+  implementation Config.libs.kotlin
+  implementation Config.libs.javaxInject
+  implementation Config.libs.rxKotlin
+  compile Config.libs.roomRuntime
+  implementation Config.libs.roomRxJava
+  implementation Config.libs.archCoreRuntime
+  implementation Config.libs.archCommon
+  kapt Config.libs.roomCompiler
+
+  testImplementation Config.testLibs.jUnit
+  testImplementation Config.testLibs.kotlinJUnit
+  testImplementation Config.testLibs.mockito
+  testImplementation Config.testLibs.assertj
+  testImplementation Config.testLibs.robolectric
+  testImplementation Config.testLibs.archTesting
+  testImplementation Config.testLibs.roomTesting
+  androidTestImplementation Config.libs.androidAnnotation
+  androidTestImplementation Config.testLibs.JUnit
+}
