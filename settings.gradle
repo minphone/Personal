@@ -1,2 +1,2 @@
-include ':Personal', ':presentation', ':domain', ':data'
+include ':Personal', ':presentation', ':domain', ':data', ':remote'
 project(':Personal').projectDir = new File('mobile_ui')

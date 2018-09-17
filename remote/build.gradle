@@ -1,0 +1,25 @@
+apply plugin: 'kotlin'
+
+dependencies {
+  implementation project(':data')
+
+  implementation Config.libs.javaxAnnotation
+  implementation Config.libs.kotlin
+  implementation Config.libs.javaxInject
+  implementation Config.libs.rxKotlin
+  implementation Config.libs.moshi
+  implementation Config.libs.moshiCodegen
+  implementation Config.libs.okHttp
+  implementation Config.libs.okHttpLogger
+  compile Config.libs.retrofit
+  implementation Config.libs.retrofitConverter
+  implementation Config.libs.retrofitAdapter
+
+  implementation Config.testLibs.jUnit
+  implementation Config.testLibs.kotlinJUnit
+  implementation Config.testLibs.mockito
+  implementation Config.testLibs.assertj
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
