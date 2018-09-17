@@ -1,0 +1,15 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation Config.libs.rxKotlin
+    implementation Config.libs.javaxInject
+    implementation Config.libs.javaxAnnotation
+
+    testImplementation Config.testLibs.mockito
+    testImplementation Config.testLibs.mockitoKotlin
+    testImplementation Config.testLibs.assertj
+    testImplementation Config.testLibs.jUnit
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
